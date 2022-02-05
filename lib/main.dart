@@ -1,4 +1,5 @@
 import 'package:dev_todo/screens/home/HomeScreen.dart';
+import 'package:dev_todo/screens/lists/add_list.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +14,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         initialRoute: '/',
-        routes: {'/': (context) => HomeScreen()},
+        routes: {
+          '/': (context) => HomeScreen(),
+          '/addList': (context) => const AddList()
+        },
         theme: ThemeData(
             scaffoldBackgroundColor: Colors.black,
             appBarTheme: const AppBarTheme(color: Colors.black),

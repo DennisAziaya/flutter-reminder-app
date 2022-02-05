@@ -1,24 +1,24 @@
+import 'package:dev_todo/models/category/category.dart';
 import 'package:flutter/material.dart';
-
-import '../../models/category_collection.dart';
 
 class GridViewItems extends StatelessWidget {
   const GridViewItems({
     Key? key,
-    required this.categoryCollection,
+    required this.categories,
   }) : super(key: key);
 
-  final CategoryCollection categoryCollection;
+  final List<Category> categories;
 
   @override
   Widget build(BuildContext context) {
     return GridView.count(
+        shrinkWrap: true,
         crossAxisCount: 2,
         mainAxisSpacing: 10,
         childAspectRatio: 16 / 9,
         crossAxisSpacing: 10,
         padding: const EdgeInsets.all(10),
-        children: categoryCollection.categories
+        children: categories
             .map((category) => Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),

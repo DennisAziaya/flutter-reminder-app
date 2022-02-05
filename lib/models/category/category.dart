@@ -1,4 +1,4 @@
-import '../common/widgets/category_icon.dart';
+import '../../common/widgets/category_icon.dart';
 
 class Category {
   String id;
@@ -12,8 +12,8 @@ class Category {
       required this.name,
       this.isChecked = true});
 
-  void toggleCheckBox() {
-    isChecked != isChecked;
+  void toggleIsChecked() {
+    isChecked = !isChecked;
   }
 }
 

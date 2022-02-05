@@ -1,9 +1,9 @@
-import 'package:dev_todo/models/category_collection.dart';
+import 'package:dev_todo/models/category/category_collection.dart';
+import 'package:dev_todo/screens/home/widgets/grid_view_items.dart';
+import 'package:dev_todo/screens/home/widgets/list_view_items.dart';
 import 'package:flutter/material.dart';
 
-import 'footer.dart';
-import 'grid_view_items.dart';
-import 'list_view_items.dart';
+import 'widgets/footer.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -43,10 +43,16 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Expanded(
                   flex: 1,
-                  child: layoutType == 'grid'
-                      ? GridViewItems(categoryCollection: categoryCollection)
-                      : ListViewItems(categoryCollection: categoryCollection)),
-              //child: GridViewItems(categoryCollection: categoryCollection)),
+                  child: AnimatedCrossFade(
+                    duration: Duration(milliseconds: 300),
+                    crossFadeState: layoutType == 'grid'
+                        ? CrossFadeState.showFirst
+                        : CrossFadeState.showSecond,
+                    firstChild: GridViewItems(
+                        categories: categoryCollection.selectedCategory),
+                    secondChild:
+                        ListViewItems(categoryCollection: categoryCollection),
+                  )),
               const Footer(),
             ],
           ),
