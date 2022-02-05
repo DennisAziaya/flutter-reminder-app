@@ -18,7 +18,7 @@ class Footer extends StatelessWidget {
                 label: const Text('Add Reminder')),
             TextButton.icon(
                 onPressed: () {},
-                icon: const Icon(Icons.add),
+                icon: const Icon(Icons.add_task),
                 label: const Text('Add List')),
           ],
         ));
