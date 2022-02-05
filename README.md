@@ -1,4 +1,4 @@
-# dev_todo
+# TASK REMINDER
 Flutter android reminder application
 
 ## FEATURES

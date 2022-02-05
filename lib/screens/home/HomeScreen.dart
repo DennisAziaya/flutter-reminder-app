@@ -3,9 +3,17 @@ import 'package:flutter/material.dart';
 
 import 'footer.dart';
 import 'grid_view_items.dart';
+import 'list_view_items.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   CategoryCollection categoryCollection = CategoryCollection();
+
+  String layoutType = 'grid';
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +21,20 @@ class HomeScreen extends StatelessWidget {
         appBar: AppBar(
           actions: [
             TextButton(
-                onPressed: () {},
-                child: const Text(
-                  'Edit',
-                  style: TextStyle(color: Colors.white),
+                onPressed: () {
+                  if (layoutType == 'grid') {
+                    setState(() {
+                      layoutType = 'list';
+                    });
+                  } else {
+                    setState(() {
+                      layoutType = 'grid';
+                    });
+                  }
+                },
+                child: Text(
+                  layoutType == 'grid' ? 'Edit' : 'Done',
+                  style: const TextStyle(color: Colors.white),
                 ))
           ],
         ),
@@ -25,8 +43,11 @@ class HomeScreen extends StatelessWidget {
             children: [
               Expanded(
                   flex: 1,
-                  child: GridViewItems(categoryCollection: categoryCollection)),
-              Footer(),
+                  child: layoutType == 'grid'
+                      ? GridViewItems(categoryCollection: categoryCollection)
+                      : ListViewItems(categoryCollection: categoryCollection)),
+              //child: GridViewItems(categoryCollection: categoryCollection)),
+              const Footer(),
             ],
           ),
         ));

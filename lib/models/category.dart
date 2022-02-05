@@ -11,6 +11,10 @@ class Category {
       required this.id,
       required this.name,
       this.isChecked = true});
+
+  void toggleCheckBox() {
+    isChecked != isChecked;
+  }
 }
 
 //var category = Category(id: '1', name: 'name', icon: null);
