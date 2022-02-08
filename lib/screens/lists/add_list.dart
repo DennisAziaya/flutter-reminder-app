@@ -23,6 +23,7 @@ class _AddListState extends State<AddList> {
 
   @override
   void initState() {
+    super.initState();
     _textController.addListener(() {
       setState() {
         _listName = _textController.text;
@@ -37,33 +38,36 @@ class _AddListState extends State<AddList> {
         title: const Text('New List'),
         actions: [
           TextButton(
-              onPressed: () {
-                if (_textController.text.isNotEmpty) {
-                } else {}
-              },
-              child: Text(
+              onPressed: _listName.isNotEmpty
+                  ? null
+                  : () {
+                      if (_textController.text.isNotEmpty) {
+                        print('added');
+                      } else {
+                        print('nothing');
+                      }
+                      _textController.clear();
+                    },
+              child: const Text(
                 'Add',
                 style: TextStyle(
-                    color:
-                        _listName.isNotEmpty ? Colors.blueAccent : Colors.grey),
+                    // color: _listName.isNotEmpty ? Colors.blueAccent : Colors.grey
+                    ),
               ))
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            IconButton(
-              onPressed: () => _textController.clear(),
-              icon: Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: _selectedColor.color),
-                child: Icon(
-                  _selectedIcon.icon,
-                  size: 40,
-                ),
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle, color: _selectedColor.color),
+              child: Icon(
+                _selectedIcon.icon,
+                size: 40,
               ),
             ),
             const SizedBox(height: 20),
@@ -79,13 +83,16 @@ class _AddListState extends State<AddList> {
                   style: Theme.of(context).textTheme.headline6,
                   decoration: InputDecoration(
                       border: InputBorder.none,
-                      suffixIcon: Container(
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Theme.of(context).primaryColor),
-                          child: const Icon(
-                            Icons.clear,
-                          ))),
+                      suffixIcon: IconButton(
+                        onPressed: () => _textController.clear(),
+                        icon: Container(
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Theme.of(context).primaryColor),
+                            child: const Icon(
+                              Icons.clear,
+                            )),
+                      )),
                 )),
             const SizedBox(height: 10),
             Wrap(

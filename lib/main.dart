@@ -21,6 +21,12 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             scaffoldBackgroundColor: Colors.black,
             appBarTheme: const AppBarTheme(color: Colors.black),
-            brightness: Brightness.dark));
+            iconTheme: IconThemeData(color: Colors.white),
+            brightness: Brightness.dark,
+            textButtonTheme: TextButtonThemeData(
+                style: TextButton.styleFrom(
+                    primary: Colors.blueAccent,
+                    textStyle: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 20)))));
   }
 }

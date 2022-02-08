@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 child: Text(
                   layoutType == 'grid' ? 'Edit' : 'Done',
-                  style: const TextStyle(color: Colors.white),
+                  //style: const TextStyle(color: Colors.white),
                 ))
           ],
         ),
