@@ -38,24 +38,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 ))
           ],
         ),
-        body: Container(
-          child: Column(
-            children: [
-              Expanded(
-                  flex: 1,
-                  child: AnimatedCrossFade(
-                    duration: Duration(milliseconds: 300),
-                    crossFadeState: layoutType == 'grid'
-                        ? CrossFadeState.showFirst
-                        : CrossFadeState.showSecond,
-                    firstChild: GridViewItems(
-                        categories: categoryCollection.selectedCategory),
-                    secondChild:
-                        ListViewItems(categoryCollection: categoryCollection),
-                  )),
-              const Footer(),
-            ],
-          ),
+        body: Column(
+          children: [
+            Expanded(
+                flex: 1,
+                child: AnimatedCrossFade(
+                  duration: Duration(milliseconds: 300),
+                  crossFadeState: layoutType == 'grid'
+                      ? CrossFadeState.showFirst
+                      : CrossFadeState.showSecond,
+                  firstChild: GridViewItems(
+                      categories: categoryCollection.selectedCategory),
+                  secondChild:
+                      ListViewItems(categoryCollection: categoryCollection),
+                )),
+            const Footer(),
+          ],
         ));
   }
 }
