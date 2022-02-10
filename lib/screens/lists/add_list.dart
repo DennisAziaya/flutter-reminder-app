@@ -1,5 +1,6 @@
 import 'package:dev_todo/common/custom_color_collection.dart';
 import 'package:dev_todo/common/custom_icon_collection.dart';
+import 'package:dev_todo/models/todo_list/todo_lists.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -25,10 +26,16 @@ class _AddListState extends State<AddList> {
   void initState() {
     super.initState();
     _textController.addListener(() {
-      setState() {
+      setState(() {
         _listName = _textController.text;
-      }
+      });
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _textController.dispose();
   }
 
   @override
@@ -38,11 +45,19 @@ class _AddListState extends State<AddList> {
         title: const Text('New List'),
         actions: [
           TextButton(
-              onPressed: _listName.isNotEmpty
+              onPressed: _listName.isEmpty
                   ? null
                   : () {
                       if (_textController.text.isNotEmpty) {
-                        print('added');
+                        Navigator.pop(
+                            context,
+                            TodoList(
+                                id: '1',
+                                title: _textController.text,
+                                icon: {
+                                  "id": _selectedIcon.id,
+                                  'color': _selectedColor.id
+                                }));
                       } else {
                         print('nothing');
                       }
